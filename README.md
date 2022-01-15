@@ -19,7 +19,11 @@ If you don't feel comfortable downloading an `.exe` or a linux executable, you c
 - Compile it using this command in the terminal
 
 ```bash
-g++ -std=c++17 -o test.exe Source.cpp json.hpp
+# Windows
+g++ -std=c++17 -o texture_list_gen.exe Source.cpp json.hpp
+
+# Linux
+g++ -std=c++17 -o texture_list_gen Source.cpp json.hpp
 ```
 
 - Then execute the output file in the terminal
