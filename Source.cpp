@@ -39,13 +39,14 @@
 #include <fstream>
 #include <sstream>
 #include <regex>
-#include <json.hpp>
+#include "json.hpp"
 
 namespace fs = std::filesystem;
 using json = nlohmann::json;
 
 int main() {
-	std::cout << "Enter the file path:" << std::endl;
+	std::cout << "Welcome! Thank you for downloading SmokeyStack's Texture List Generator.\n";
+	std::cout << "Enter the file path:\n";
 	std::string file_path;
 	json list = { 1 };
 	std::cin >> file_path;
@@ -70,8 +71,7 @@ int main() {
 	list.erase(list.begin());
 	std::ofstream MyFile(file_path + "/textures_list.json");
 	std::cout << list << std::endl;
-	MyFile << list;
+	MyFile << list.dump(4);
 	MyFile.close();
-	system("pause");
 	return EXIT_SUCCESS;
 }
