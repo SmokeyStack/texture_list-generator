@@ -45,32 +45,28 @@ namespace fs = std::filesystem;
 using json = nlohmann::json;
 
 int main() {
-	std::cout << "Welcome! Thank you for downloading SmokeyStack's Texture List Generator.\n";
-	std::cout << "Enter the file path:\n";
-	std::string file_path;
 	json list = { 1 };
+	std::string file_path;
+	std::cout << "Welcome! Thank you for downloading SmokeyStack's Texture List Generator.\n";
+	std::cout << "Enter the file path: ";
 	std::cin >> file_path;
 	for (const auto& file : fs::recursive_directory_iterator(file_path)) {
 		if (file.is_regular_file()) {
 			if (fs::path(file).extension() == ".png" || fs::path(file).extension() == ".tga") {
-				std::string temp_str;
-				std::stringstream temp_path;
-				temp_path << file.path() << std::endl;
-				temp_path >> temp_str;
-				std::regex r("\\\\\\\\");
-				temp_path << std::regex_replace(temp_str, r, "/") << std::endl;
-				temp_path >> temp_str;
-				size_t pos = temp_str.find("textures");
-				std::string pre_product = temp_str.substr(pos);
-				size_t ext = pre_product.find(".");
-				std::string final_product = pre_product.substr(0, ext);
-				auto new_pos = list.insert(list.end(), final_product);
+				std::string image_path;
+				std::stringstream temp;
+				temp << file.path();
+				temp >> image_path;
+				image_path = std::regex_replace(image_path, std::regex("\\\\\\\\"), "/");
+				size_t pos = image_path.find("textures");
+				image_path = image_path.substr(pos);
+				image_path = image_path.substr(0, image_path.find("."));
+				auto new_pos = list.insert(list.end(), image_path);
 			}
 		}
 	}
 	list.erase(list.begin());
 	std::ofstream MyFile(file_path + "/textures_list.json");
-	std::cout << list << std::endl;
 	MyFile << list.dump(4);
 	MyFile.close();
 	return EXIT_SUCCESS;
