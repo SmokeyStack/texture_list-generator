@@ -4,7 +4,7 @@
 Welcome! Thank you for downloading SmokeyStack's Texture List Generator.
 
 ## What is this application for?
-This application is used to generate a `texture_list.json` file for MC Bedrock add-ons. Why do we need that file? Learn more [here](https://wiki.bedrock.dev/visuals/texture-list.html)
+This application is used to generate a `texture_list.json` file for MC Bedrock add-ons. Why do we need that file? Learn more [here](https://wiki.bedrock.dev/concepts/texture-list.html)
 
 ## Prerequisites
 - [Microsoft Visual C++ Redistributable](https://aka.ms/vs/16/release/vc_redist.x64.exe) installed.
